@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+""" Eliza homework. Relationship advisor """
+__author__ = "Diamondique Hill"
+
+import re
+import random
+
+# use regex to find the user's name in a string
+n = input("Enter your first and last name: ")
+n = re.findall(r'(?:[A-Z][a-z]*)', n)
+
+# if(len(n) > 1):
+#     print("Hi "+ n[1]+ ", it's nice to meet you. How are you today?")
+# else:
+print("Hi " + n[0] + ", it's nice to meet you. How are you today?")
+
+
+relationship = "(mother)|(mom)|(father)|(dad)|(sister)|(sis)|(brother)|(bro)"
+goodMood = "(good)|(joy)|(happy)"
+okMood = "(ok)|(decent)|(alright)"
+badMood = "(bad)|(sad)|(depressed)"
+food = "(burgers)|(fries)|(tacos)|(cheese steak)|(burritos)|(pizza)"
+rec = "(hug)|(friend)"
+choice = "(yes)|(no)|(maybe)|(not right now)"
+game = "(ratchet and clank)|(tomb raider)|(destiny 2)|(any)"
+activities = "(walk)|(run)|(basketball)|(jog)|(tennis)"
+tired = "(yes)|(no)|(tired)"
+famAge = "(she is young)|(he is young)|(she is older than me)|(he is older than me)"
+
+conversation = " "
+while conversation != 'bye':
+    re.findall(r"ed\b", conversation)
+    conversation = input("")
+    if re.search(goodMood, conversation):
+        good = ""
+        goodMoodList = re.findall(goodMood, conversation)
+        for g in goodMoodList[0]:
+            good += g
+        #print("What made you feel", good, "today?")
+        k = ['What made you feel %1 today?', 'I also feel %1, do you want to play video games together?', 'That is awesome! Can we eat tacos now?']
+        kk = random.choice(k)
+        print(re.sub('%1', good, kk))
+
+    elif re.search(choice, conversation):
+        cho = ""
+        choiceList = re.findall(choice, conversation)
+        for c in choiceList[0]:
+            cho += c
+        k = ['Okay, so you said %1 what will we play?', 'I am sorry, would you like to talk about your favorite food?', 'I am sorry, how is your mom?']
+        kk = random.choice(k)
+        print(re.sub('%1', cho, kk))
+
+    elif re.search(game, conversation):
+        ga = ""
+        gameList = re.findall(game, conversation)
+        for y in gameList[0]:
+            ga += y
+        k = ['I like %1 as well!', 'What food do you eat when you play games?', 'My eyes are slowly closing, I am tired']
+        kk = random.choice(k)
+        print(re.sub('%1', ga, kk))
+
+    elif re.search(relationship, conversation):
+        fam = ""
+        relationshipList = re.findall(relationship, conversation)
+        for f in relationshipList[0]:
+            fam += f
+        #print("What does", fam, "mean?")
+        k = ['How old is your %1?', 'What does your %1 like to do for fun?', 'Do you and your %1 go out on trips and vacations?', 'Do I have a %1 too?']
+        kk = random.choice(k)
+        print(re.sub('%1', fam, kk))
+
+    elif re.search(famAge, conversation):
+        age = ""
+        famAgeList = re.findall(famAge, conversation)
+        for ag in famAgeList[0]:
+            age += ag
+        k = ['Woah!, You are what they call the youngest, tell me about the actitivities you do together?', 'I wonder if my %1 is the same age bracket as your %1', 'All this talk about age is making me sleepy']
+        kk = random.choice(k)
+        print(re.sub('%1', age, kk))
+
+    elif re.search(okMood, conversation):
+        basic = ""
+        okMoodList = re.findall(okMood, conversation)
+        for o in okMoodList[0]:
+            basic += o
+        #print("What made it ok?")
+        k = ['Why are you only %1?', 'Do you want to drink milkshakes?', 'I understand, I feel %1 sometimes too!']
+        kk = random.choice(k)
+        print(re.sub('%1', basic, kk))
+
+    elif re.search(badMood, conversation):
+        emotions = ""
+        badMoodList = re.findall(badMood, conversation)
+        for e in badMoodList[0]:
+            emotions += e
+        #print("Why are you", emotions, "today?")
+        k = ['Why are you %1 today?', 'What helps you feel better?', 'Do you need a hug or a friend right now?']
+        kk = random.choice(k)
+        print(re.sub('%1', emotions, kk))
+
+    elif re.search(rec, conversation):
+        ree = ""
+        recList = re.findall(rec, conversation)
+        for r in recList[0]:
+            rec += r
+        k = ['Okay, here comes your hug \^.0/!', 'I am here friend']
+        kk = random.choice(k)
+        print(re.sub('%1', rec, kk))
+
+    elif re.search(food, conversation):
+        hunger = ""
+        foodList = re.findall(food, conversation)
+        for fo in foodList[0]:
+            hunger += fo
+        #print("What is your favorite type of", hunger, "?")
+        k = ["What is your favorite type of %1 ?", "Cool, what activities do you like to do?", "Is %1 good for you or bad?"]
+        kk = random.choice(k)
+        print(re.sub('%1', hunger, kk))
+
+    elif re.search(activities, conversation):
+        act = ""
+        activitiesList = re.findall(activities, conversation)
+        for a in activitiesList[0]:
+            act += a
+        k = ["I would love to %1 sometimes with you! But I must rest now, may I reset?", "That is cool, I am growing tired, may I reset now?"]
+        kk = random.choice(k)
+        print(re.sub('%1', act, kk))
+
+    elif re.search(tired, conversation):
+        rs = ""
+        restList = re.findall(tired, conversation)
+        for x in restList[0]:
+            rs += x
+        k = ["I will talk to you again friend!", "See you later!", "Why not? I must recharge."]
+        kk = random.choice(k)
+        print(re.sub('%1', rs, kk))
+    else:
+        print("Sorry, can you say that again?")
